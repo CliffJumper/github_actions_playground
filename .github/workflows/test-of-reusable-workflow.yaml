@@ -7,7 +7,7 @@ jobs:
     jobone:
         uses: ./.github/workflows/test-reusable-workflow.yaml
     jobtwo:
-        if: ${{ needs.jobone.outputs.test_output_one == 'false' }}
+        if: ${{ needs.jobone.outputs.test_output_one == 'true' }}
         needs: jobone
         uses: ./.github/workflows/test-reusable-workflow.yaml
 
