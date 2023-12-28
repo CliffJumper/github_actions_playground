@@ -9,7 +9,9 @@ jobs:
     jobtwo:
         if: ${{ needs.jobone.outputs.test_output_one == 'false' }}
         needs: jobone
-        runs-on: ubuntu-latest
-        steps:
-            - name: stepone
-              run: echo "Running jobtwo"
+        uses: ./.github/workflows/test-reusable-workflow.yaml
+
+        # runs-on: ubuntu-latest
+        # steps:
+        #     - name: stepone
+        #       run: echo "Running jobtwo"
