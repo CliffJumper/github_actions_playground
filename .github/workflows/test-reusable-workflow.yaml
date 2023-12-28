@@ -1,0 +1,19 @@
+name: Reusable Workflow Testing
+
+on:
+    workflow_call:
+        outputs:
+            test_output_one:
+                description: "Testing if reusable workflow outputs work in job.if clauses"
+                value: ${{ jobs.jobone.outputs.test_output_one }}
+
+jobs:
+    jobone:
+        runs-on: ubuntu-latest
+        outputs:
+            test_output_one: ${{ steps.stepone.outputs.test_output_one }}
+        steps:
+            - name: stepone
+              id: stepone
+              run: echo "test_output_one=true" >> $GITHUB_OUTPUT
+
