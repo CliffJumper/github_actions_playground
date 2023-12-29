@@ -13,7 +13,9 @@ jobs:
             env: 'deploy'
         if: ${{ needs.jobone.outputs.test_output_one == "true" }}
         needs: jobone
-        runs-on: ubuntu-latest
-        steps:
-            - name: stepone
-              run: echo "Running jobtwo"
+        uses: ./.github/workflows/test-reusable-workflow.yaml
+
+        # runs-on: ubuntu-latest
+        # steps:
+        #     - name: stepone
+        #       run: echo "Running jobtwo"
