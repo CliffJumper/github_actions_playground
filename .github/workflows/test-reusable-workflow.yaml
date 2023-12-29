@@ -29,6 +29,7 @@ jobs:
                     echo "test_output_one=true" >> $GITHUB_OUTPUT
                 else
                     echo "RUNNING JOBTWO"
+                    echo "test_output_one=false" >> $GITHUB_OUTPUT
                 fi
               shell: bash
 
