@@ -10,7 +10,7 @@ jobs:
             env: 'build'
             job: 'jobone'
     jobtwo:
-        if: ${{ needs.jobone.outputs.test_output_one == "true" }}
+        if: ${{ needs.jobone.outputs.test_output_one == 'true' }}
         with:
             env: 'deploy'
             job: 'jobtwo'
