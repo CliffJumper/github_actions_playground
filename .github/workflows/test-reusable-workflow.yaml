@@ -6,13 +6,16 @@ on:
             env:
                 required: true
                 type: string
+            job:
+                required: true
+                type: string
         outputs:
             test_output_one:
                 description: "Testing if reusable workflow outputs work in job.if clauses"
                 value: ${{ jobs.jobone.outputs.test_output_one }}
 
 jobs:
-    jobone:
+    workflowjobone:
         environment: ${{ inputs.env }}
         runs-on: ubuntu-latest
         outputs:
@@ -20,5 +23,12 @@ jobs:
         steps:
             - name: stepone
               id: stepone
-              run: echo "test_output_one=true" >> $GITHUB_OUTPUT
+              run: |
+                if [ ${{ inputs.job }} == 'jobone' ]; then
+                    echo "RUNNING JOBONE"
+                    echo "test_output_one=true" >> $GITHUB_OUTPUT
+                else
+                    echo "RUNNING JOBTWO"
+                fi
+              shell: bash
 

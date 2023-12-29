@@ -8,14 +8,11 @@ jobs:
         uses: ./.github/workflows/test-reusable-workflow.yaml
         with:
             env: 'build'
+            job: 'jobone'
     jobtwo:
+        if: ${{ needs.jobone.outputs.test_output_one == "true" }}
         with:
             env: 'deploy'
-        if: ${{ needs.jobone.outputs.test_output_one == "true" }}
+            job: 'jobtwo'
         needs: jobone
         uses: ./.github/workflows/test-reusable-workflow.yaml
-
-        # runs-on: ubuntu-latest
-        # steps:
-        #     - name: stepone
-        #       run: echo "Running jobtwo"
