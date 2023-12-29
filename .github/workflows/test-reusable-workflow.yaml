@@ -2,6 +2,10 @@ name: Reusable Workflow Testing
 
 on:
     workflow_call:
+        inputs:
+            env:
+                required: true
+                type: string
         outputs:
             test_output_one:
                 description: "Testing if reusable workflow outputs work in job.if clauses"
@@ -9,6 +13,7 @@ on:
 
 jobs:
     jobone:
+        environment: ${{ inputs.env }}
         runs-on: ubuntu-latest
         outputs:
             test_output_one: ${{ steps.stepone.outputs.test_output_one }}

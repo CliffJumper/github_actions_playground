@@ -6,7 +6,11 @@ on:
 jobs:
     jobone:
         uses: ./.github/workflows/test-reusable-workflow.yaml
+        with:
+            env: 'build'
     jobtwo:
+        with:
+            env: 'deploy'
         if: ${{ needs.jobone.outputs.test_output_one == "true" }}
         needs: jobone
         runs-on: ubuntu-latest
